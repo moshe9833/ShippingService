@@ -1,0 +1,46 @@
+﻿@using static CourierRates.Controllers.APICallController;
+@model CourierRates.Controllers.APICallController.Rootobject
+@{
+    ViewData["Title"] = "Ups Rating";
+    Layout = null;
+
+    Rateresponse Rate_Model = Model.RateResponse;
+}
+
+
+<h2>Service and Rate List</h2>
+<h4><span style="color:red">Below is rate list </span></h4>
+<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Click here to get back on master page</a>
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+<body>
+
+    <div id="maindiv" >
+        <table class="table table-striped sampleTable" id="table_id">
+            <thead>
+                <tr>
+                    <th scope="col">Shipment Service Code</th>
+                    <th scope="col">Shipment Description</th>
+                    <th scope="col">Transportation Charges</th>
+                    <th scope="col">Base Service Charge</th>
+                    <th scope="col">Service Options Charges</th>
+                    <th scope="col">Total Charges</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td scope="row">@Rate_Model.RatedShipment.Service.Code</td>
+                    <td>@Rate_Model.RatedShipment.RatedShipmentAlert.Description</td>
+                    <td>@(Rate_Model.RatedShipment.TransportationCharges.CurrencyCode + " " + Rate_Model.RatedShipment.TransportationCharges.MonetaryValue)</td>
+                    <td>@(Rate_Model.RatedShipment.BaseServiceCharge.CurrencyCode + " " + Rate_Model.RatedShipment.BaseServiceCharge.MonetaryValue)</td>
+                    <td>@(Rate_Model.RatedShipment.ServiceOptionsCharges.CurrencyCode + " " + Rate_Model.RatedShipment.ServiceOptionsCharges.MonetaryValue)</td>
+                    <td>@(Rate_Model.RatedShipment.TotalCharges.CurrencyCode + " " + Rate_Model.RatedShipment.TotalCharges.MonetaryValue)</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>

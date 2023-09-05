@@ -1,0 +1,136 @@
+﻿@{
+    ViewData["Title"] = "Courier Rate Page";
+}
+<style>
+    .companylogo {
+        width: auto;
+        display: inline-table;
+        vertical-align: middle;
+        position: relative;
+        top: 35px;
+        min-width: 128px;
+    }
+    #CourierRates h1
+    {
+        font-weight:400;
+    }
+    .companylogo img {
+        width: 100%;
+    }
+
+    #CourierRates .btn-width {
+        width: 95%;
+        margin: auto;
+        display: inline-block;
+    }
+    .titlecolor {
+        color: #df8d0c;
+    }
+    @@media (max-width:992px)
+    {
+        .companylogo {
+            width: 75px;
+            display: inline-table;
+            vertical-align: middle;
+            position: inherit;
+            top: 0;
+            margin: 10px 0;
+        }
+    }
+
+    .errortxtShipper, .errortxtRecipient {
+        color:red;
+        font-size:13px;
+        line-height:15px;
+        display:none;
+    }
+
+    #RatingContainer input::-webkit-outer-spin-button,
+    #RatingContainer input::-webkit-inner-spin-button {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        -o-appearance: none;
+    }
+</style>
+<div class="container">
+<section id="CourierRates">
+<div class="text-center">
+        <h1><span class="titlecolor"> Courier Rates</span></h1>
+    <p class="mb-3"> Add the shipper and recipinet postal code, and clieck on the relevant <br />  courrier  methods call API</p>
+</div>
+        <div class="col-md-11 mx-auto">
+    
+            <form id="RatingContainer" class="row" method="post" action="/APICall/Get_All_RateList" onsubmit="return validateRatingContainer();">
+                <div class="form-group col-md-6 col-lg-4">
+                    <label class="col-form-label" for="txtName">Shipper Postal Code:</label>
+                    <input type="number" id="txtShipperPostalCode" onkeydown="javascript: return event.keyCode == 69 ? false : true" class="form-control" name="shipperPostalCode" value="" />
+                    <span class="errortxtShipper">Please Enter Shipper Postal Code.</span>
+                </div>
+                <div class="form-group col-md-6 col-lg-4">
+                    <label class="col-form-label" for="txtAge">Recipient Postal Code:</label>
+                    <input type="number" id="txtRecipientPostalCode" onkeydown="javascript: return event.keyCode == 69 ? false : true" class="form-control" name="recipientPostalCode" value="" />
+                    <span class="errortxtRecipient">Please Enter Recipient Postal Code.</span>
+                </div>
+               
+                <div class="form-group col-md-6 col-lg-2">
+                    <label class="w-100 col-form-label d-none d-lg-inline-block">&nbsp;</label>
+                    <button class="btn btn-md btn-primary" type="submit"> Compare Rates</button>
+            </div>
+            </form>
+</div>
+
+</section>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+
+<script>
+    function validateRatingContainer() {
+        debugger;
+        var shipperpostal = $("#txtShipperPostalCode").val().trim();
+        var validationFlag = true; 
+        if (shipperpostal == "") {
+            $(".errortxtShipper").css("display", "inline-block");
+            $("#txtShipperPostalCode").css("border-color","red");
+            validationFlag = false;
+        }
+        else{
+            $(".errortxtShipper").css("display", "none");
+            $("#txtShipperPostalCode").css("border-color", "#ced4da");
+        }
+        $('#txtShipperPostalCode').keyup(function () {
+            this.value = this.value.replace(/[^0-9\.]/g, '');
+        });
+        var recipientpostal = $("#txtRecipientPostalCode").val().trim();
+        if (recipientpostal == "") {
+            $(".errortxtRecipient").css("display", "inline-block");
+            $("#txtRecipientPostalCode").css("border-color", "red");
+            validationFlag = false;
+        }
+        else {
+            $(".errortxtRecipient").css("display", "none");
+            $("#txtRecipientPostalCode").css("border-color", "#ced4da");
+        }
+        $('#txtRecipientPostalCode').keyup(function () {
+            this.value = this.value.replace(/[^0-9\.]/g, '');
+        });
+        return validationFlag;
+
+       
+    }
+</script>
+<script>
+    function callStampsRateAPI(){
+       var qs = window.location.search.split('code=', window.location.search.length);
+       if(qs.length = 2){
+            location.href = '/Apicall/Stamps_Login_Redirect?code=' + qs[1];
+       }
+       else{
+            location.href = '/Apicall/Stamps_Login_Redirect?code=';
+       }
+    }
+</script>
+
+

@@ -1,0 +1,26 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  font-size:14px;
+}
+.form-select, .font-control
+{
+    font-size:14px;
+}
+.form-group, form-row {
+    margin-bottom: 0.5em;
+}
