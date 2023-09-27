@@ -9,45 +9,61 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CourierRates
 build_property.RootNamespace = CourierRates
-build_property.ProjectDir = D:\APICall_NewProject03_June_2023\CourierRates\
+build_property.ProjectDir = C:\Users\mosheyn\Source\Repos\moshe9833\ShippingService\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\APICall_NewProject03_June_2023\CourierRates
+build_property.MSBuildProjectDirectory = C:\Users\mosheyn\Source\Repos\moshe9833\ShippingService
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/APICall_NewProject03_June_2023/CourierRates/Views/APICall/GetAPIData.cshtml]
+[C:/Users/mosheyn/Source/Repos/moshe9833/ShippingService/Views/APICall/GetAPIData.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQVBJQ2FsbFxHZXRBUElEYXRhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/APICall_NewProject03_June_2023/CourierRates/Views/APICall/Index.cshtml]
+[C:/Users/mosheyn/Source/Repos/moshe9833/ShippingService/Views/APICall/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQVBJQ2FsbFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/APICall_NewProject03_June_2023/CourierRates/Views/Home/Index.cshtml]
+[C:/Users/mosheyn/Source/Repos/moshe9833/ShippingService/Views/APICall/Stamps_Login_Redirect.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQVBJQ2FsbFxTdGFtcHNfTG9naW5fUmVkaXJlY3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mosheyn/Source/Repos/moshe9833/ShippingService/Views/APICall/Stamps_Rating.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQVBJQ2FsbFxTdGFtcHNfUmF0aW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mosheyn/Source/Repos/moshe9833/ShippingService/Views/APICall/UPS_Rating.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQVBJQ2FsbFxVUFNfUmF0aW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mosheyn/Source/Repos/moshe9833/ShippingService/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/APICall_NewProject03_June_2023/CourierRates/Views/Home/Privacy.cshtml]
+[C:/Users/mosheyn/Source/Repos/moshe9833/ShippingService/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/APICall_NewProject03_June_2023/CourierRates/Views/Shared/Error.cshtml]
+[C:/Users/mosheyn/Source/Repos/moshe9833/ShippingService/Views/Home/ShipmentDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTaGlwbWVudERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/mosheyn/Source/Repos/moshe9833/ShippingService/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/APICall_NewProject03_June_2023/CourierRates/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/mosheyn/Source/Repos/moshe9833/ShippingService/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/APICall_NewProject03_June_2023/CourierRates/Views/_ViewImports.cshtml]
+[C:/Users/mosheyn/Source/Repos/moshe9833/ShippingService/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/APICall_NewProject03_June_2023/CourierRates/Views/_ViewStart.cshtml]
+[C:/Users/mosheyn/Source/Repos/moshe9833/ShippingService/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/APICall_NewProject03_June_2023/CourierRates/Views/Shared/_Layout.cshtml]
+[C:/Users/mosheyn/Source/Repos/moshe9833/ShippingService/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-fpopfi1g3i

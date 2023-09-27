@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\APICall_NewProject03_June_2023\\CourierRates_UpdatedOn_08202023\\CourierRates\\CourierRates.csproj": {}
+    "C:\\Users\\mosheyn\\source\\repos\\moshe9833\\ShippingService\\CourierRates.csproj": {}
   },
   "projects": {
-    "D:\\APICall_NewProject03_June_2023\\CourierRates_UpdatedOn_08202023\\CourierRates\\CourierRates.csproj": {
+    "C:\\Users\\mosheyn\\source\\repos\\moshe9833\\ShippingService\\CourierRates.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\APICall_NewProject03_June_2023\\CourierRates_UpdatedOn_08202023\\CourierRates\\CourierRates.csproj",
+        "projectUniqueName": "C:\\Users\\mosheyn\\source\\repos\\moshe9833\\ShippingService\\CourierRates.csproj",
         "projectName": "CourierRates",
-        "projectPath": "D:\\APICall_NewProject03_June_2023\\CourierRates_UpdatedOn_08202023\\CourierRates\\CourierRates.csproj",
-        "packagesPath": "C:\\Users\\Spadez\\.nuget\\packages\\",
-        "outputPath": "D:\\APICall_NewProject03_June_2023\\CourierRates_UpdatedOn_08202023\\CourierRates\\obj\\",
+        "projectPath": "C:\\Users\\mosheyn\\source\\repos\\moshe9833\\ShippingService\\CourierRates.csproj",
+        "packagesPath": "C:\\Users\\mosheyn\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mosheyn\\source\\repos\\moshe9833\\ShippingService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files\\DevExpress 22.1\\Components\\Offline Packages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Spadez\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\mosheyn\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.1.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Program Files\\DevExpress 22.1\\Components\\System\\Components\\Packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -77,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
