@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uwWJE+of12Le0a5370ON6jQzBSLt06d8w0RZQOIVYjg+CqqSLwwZ18BbkMzTmOj0NfYvWZzHaCGgHBSI0YBA4g==",
+  "dgSpecHash": "upFSa9dSPVxToi+JRPFCcy1JpiILM5v9RO+TA87uv2QMEfjPCxpkoXF2GynPsFi6dXB1+En0bhjKc56gh2l8KA==",
   "success": true,
-  "projectFilePath": "D:\\APICall_NewProject03_June_2023\\CourierRates_UpdatedOn_08202023\\CourierRates\\CourierRates.csproj",
+  "projectFilePath": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\CourierRates.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Spadez\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\Spadez\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

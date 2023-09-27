@@ -23,6 +23,7 @@ namespace CourierRates.Controllers
             {
                 HttpContext.Session.Remove("Shipper_Postal_Code");
                 HttpContext.Session.Remove("Recipient_Postal_Code");
+                HttpContext.Session.Remove("IsForlabel");
             }
             //UPS token
             //var accessToken = code;
@@ -39,11 +40,15 @@ namespace CourierRates.Controllers
             //await Get_Stamps_RateList(acess_token);
             #endregion
 
-
-            if (code != null)
+            var IsForLable = HttpContext.Session.GetString("IsForlabel");
+            if (code != null && IsForLable == "1")
             {
-               return  this.Redirect(Request.Scheme + "://" + Request.Host.Value + "/APICall/Stamps_Login_Redirect?code=" + code);
-               
+                return this.Redirect(Request.Scheme + "://" + Request.Host.Value + "/APICall/Stamps_Login_RedirectLabel?code=" + code);
+
+            }
+            else if(code != null)
+            {
+                return this.Redirect(Request.Scheme + "://" + Request.Host.Value + "/APICall/Stamps_Login_Redirect?code=" + code);
             }
             //await upsAsync();
             return View();

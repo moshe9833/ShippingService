@@ -14,12 +14,18 @@ using System.Net.Http.Headers;
 using System.Security.Policy;
 using System.Text;
 using System.Text.Json.Nodes;
+using static CourierRates.Models.Shipping_Response;
+using static CourierRates.Models.Shipping_Response.UPS_Response;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace CourierRates.Controllers
 {
     public class APICallController : Controller
     {
+        public IActionResult GetlabelForAll()
+        {
+            return View();
+        }
         public async Task<IActionResult> Index()
         {
             string _shipperPostalCode = HttpContext.Request.Form["shipperPostalCode"];
@@ -39,14 +45,10 @@ namespace CourierRates.Controllers
            );
                 //ADD THE RATE LIST OF UPS
 
-
             }
-
-
 
             return View(gridResult);
         }
-
         private async Task<Application> testFinal(string accountNumber, string _shipperPostalCode, string _recipientPostalCode)
         {
             var SanboxLink = "https://apis-sandbox.fedex.com/rate/v1/rates/quotes";
@@ -55,16 +57,11 @@ namespace CourierRates.Controllers
             var request = new RestRequest(Method.Post.ToString());
             var token = GetToken();
 
-
             var data = await GetrateResponseAsync(token, accountNumber, _shipperPostalCode, _recipientPostalCode);
             return data;
-
-
         }
         public async Task<ActionResult> GetAPIData()
         {
-
-
             var client = new HttpClient();
 
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
@@ -111,7 +108,6 @@ namespace CourierRates.Controllers
 
             // Convert JSON data to key-value pairs
 
-
             System.Threading.Tasks.Task.Run(async () =>
             {
                 response = await httpClient.PostAsync(BaseUrl1, content4);
@@ -130,7 +126,6 @@ namespace CourierRates.Controllers
                 HttpContext.Session.SetString("Shipper_Postal_Code", shipperPostalCode);
                 HttpContext.Session.SetString("Recipient_Postal_Code", recipientPostalCode);
             }
-
             if (code == null)
             {
                 return this.Redirect(Request.Scheme + "://" + Request.Host.Value + "/APICall/Stamps_Login_Redirect?code=" + code);
@@ -189,6 +184,162 @@ namespace CourierRates.Controllers
 
             gridResult = gridResult.OrderBy(x => x.Rate).ToList();
             return View("index",gridResult);
+        }
+        public async Task<ActionResult> Get_STMPS_Label(string code, string shipperPostalCode, string recipientPostalCode, string ServiceType)
+        {
+             Root1 label = new Root1();
+             //STORE POSTAL CODE INTO SESSION
+             HttpContext.Session.SetString("Shipper_Postal_Code", shipperPostalCode);
+             HttpContext.Session.SetString("Recipient_Postal_Code", recipientPostalCode);
+             HttpContext.Session.SetString("ServiceType", ServiceType);
+
+            if (code == null)
+             {
+                 return this.Redirect(Request.Scheme + "://" + Request.Host.Value + "/APICall/Stamps_Login_RedirectLabel?code=" + code);
+             }
+
+            if (ServiceType == "STMPS")
+            {
+                #region STAMPS
+                string acess_token = await Get_Access_Token_For_Stamsp(code);
+                label = await Get_STMPS_LabelAPI(acess_token, shipperPostalCode, recipientPostalCode);
+                #endregion
+            }
+            else if (ServiceType == "UPS")
+            {
+                string access_token = await GetToken_UPS();
+                label = await Create_Shipment_with_UPS(access_token, shipperPostalCode, recipientPostalCode);
+            }
+            else if (ServiceType == "FEDEX")
+            {
+                string acess_tokenFedex = GetToken();
+                label = await Create_Shipment_with_FedEx(acess_tokenFedex, shipperPostalCode, recipientPostalCode);
+            }
+
+                return View(label);
+        }
+        public async Task<Root1> Get_STMPS_LabelAPI(string tokenAccess, string PostalcodeShiper, string Reciptcodeshiper)
+        {
+            var uuid = new Guid();
+            Root1 DeserilizeData = new Root1();
+            var DateForShipment = DateTime.Now.ToShortDateString();
+            try
+            {
+                var client = new HttpClient();
+                var request = new HttpRequestMessage(HttpMethod.Post, "https://api.testing.stampsendicia.com/sera/v1/labels");
+                request.Headers.Add("Accept", "application/json");
+                request.Headers.Add("Idempotency-Key", Convert.ToString(uuid));
+                //request.Headers.Add("", "");
+                request.Headers.Add("Authorization", "Bearer "+ tokenAccess);
+                var content = new StringContent("{\n  \"from_address\": {\n    \"company_name\": \"Test Sender\",\n    \"name\": \"Test Sender\",\n    \"address_line1\": \"123 Main Street\",\n    \"city\": \"Anytown\",\n    \"state_province\": \"CA\",\n    \"postal_code\": \"65247\",\n    \"country_code\": \"US\"\n  },\n  \"return_address\": {\n    \"company_name\": \"Test Return Address\",\n    \"name\": \"Test Return Address\",\n    \"address_line1\": \"456 Elm Street\",\n    \"city\": \"Anytown\",\n    \"state_province\": \"CA\",\n    \"postal_code\": \"12345\",\n    \"country_code\": \"US\"\n  },\n  \"to_address\": {\n    \"company_name\": \"Recipient Company\",\n    \"name\": \"Recipient Name\",\n    \"address_line1\": \"456 Recipient Rd\",\n    \"address_line2\": \"Apt 789\",\n    \"address_line3\": \"Recipient Line 3\",\n    \"city\": \"Recipient City\",\n    \"state_province\": \"NY\",\n    \"postal_code\": \"75063\",\n    \"country_code\": \"US\",\n    \"phone\": \"987-654-3210\",\n    \"email\": \"recipient@email.com\"\n  },\n  \"service_type\": \"usps_first_class_mail\",\n  \"package\": {\n    \"packaging_type\": \"package\",\n    \"weight\": 1.0,\n    \"weight_unit\": \"ounce\",\n    \"length\": 6.0,\n    \"width\": 3.0,\n    \"height\": 2.0,\n    \"dimension_unit\": \"inch\"\n  },\n  \"ship_date\": \"" + DateForShipment + "\",\n  \"is_return_label\": false,\n  \"advanced_options\": {\n    \"non_machinable\": false,\n    \"saturday_delivery\": false,\n    \"delivered_duty_paid\": false,\n    \"hold_for_pickup\": false,\n    \"certified_mail\": false,\n    \"return_receipt\": false,\n    \"return_receipt_electronic\": false,\n    \"collect_on_delivery\": {\n      \"amount\": 0.00,\n      \"currency\": \"usd\"\n    },\n    \"registered_mail\": {\n      \"amount\": 0.00,\n      \"currency\": \"usd\"\n    },\n    \"sunday_delivery\": false,\n    \"holiday_delivery\": false,\n    \"restricted_delivery\": false,\n    \"notice_of_non_delivery\": false,\n    \"special_handling\": {\n      \"special_contents_type\": \"\",\n      \"fragile\": false\n    },\n    \"no_label\": {\n      \"is_drop_off\": false,\n      \"is_prepackaged\": false\n    },\n    \"is_pay_on_use\": false,\n    \"return_options\": {\n      \"outbound_label_id\": \"\"\n    }\n  },\n  \"label_options\": {\n    \"label_size\": \"4x6\",\n    \"label_format\": \"pdf\",\n    \"label_logo_image_id\": 0,\n    \"label_output_type\": \"url\"\n  },\n  \"references\": {\n    \"printed_message1\": \"\",\n    \"printed_message2\": \"\",\n    \"printed_message3\": \"\",\n    \"cost_code_id\": 0,\n    \"reference1\": \"\",\n    \"reference2\": \"\",\n    \"reference3\": \"\",\n    \"reference4\": \"\"\n  }\n}", null, "application/json");
+                request.Content = content;
+                var response = await client.SendAsync(request);
+                response.EnsureSuccessStatusCode();
+                var responseret = await response.Content.ReadAsStringAsync();
+
+                if(response.StatusCode == System.Net.HttpStatusCode.Created || response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    DeserilizeData = new Root1();
+                    DeserilizeData = JsonConvert.DeserializeObject<Root1>(responseret);
+                }
+            }
+            catch(Exception ex)
+            { 
+            
+            }
+
+            return DeserilizeData;
+        }
+        public async Task<dynamic> Get_Shipment_Label(string Courier_type, string PostalcodeShiper, string Reciptcodeshiper)
+        {
+
+            return 1;
+        }
+        public async Task<Root1> Create_Shipment_with_FedEx(string AccessToken, string PostalcodeShiper, string Reciptcodeshiper)
+        {
+            Root_fedex Shipment_response = new Root_fedex();
+            Root1 label = new Root1();
+            var uuid = new Guid();
+
+            try
+            {
+                var client = new HttpClient();
+                var request = new HttpRequestMessage(HttpMethod.Post, "https://apis-sandbox.fedex.com/ship/v1/shipments");
+                request.Headers.Add("Accept", "application/json");
+                request.Headers.Add("x-customer-transaction-id", Convert.ToString(uuid));
+                //request.Headers.Add("content-type", "application/json");
+                //request.Headers.Add("x-locale", "en_US");
+                request.Headers.Add("authorization", "Bearer " + AccessToken);
+                var content = new StringContent("{\r\n  \"labelResponseOptions\": \"URL_ONLY\",\r\n  \"requestedShipment\": {\r\n    \"shipper\": {\r\n      \"contact\": {\r\n        \"personName\": \"SHIPPER NAME\",\r\n        \"phoneNumber\": 1234567890,\r\n        \"companyName\": \"Shipper Company Name\"\r\n      },\r\n      \"address\": {\r\n        \"streetLines\": [\r\n          \"SHIPPER STREET LINE 1\"\r\n        ],\r\n        \"city\": \"HARRISON\",\r\n        \"stateOrProvinceCode\": \"AR\",\r\n        \"postalCode\": 72601,\r\n        \"countryCode\": \"US\"\r\n      }\r\n    },\r\n    \"recipients\": [\r\n      {\r\n        \"contact\": {\r\n          \"personName\": \"RECIPIENT NAME\",\r\n          \"phoneNumber\": 1234567890,\r\n          \"companyName\": \"Recipient Company Name\"\r\n        },\r\n        \"address\": {\r\n          \"streetLines\": [\r\n            \"RECIPIENT STREET LINE 1\",\r\n            \"RECIPIENT STREET LINE 2\"\r\n          ],\r\n          \"city\": \"Collierville\",\r\n          \"stateOrProvinceCode\": \"TN\",\r\n          \"postalCode\": 38017,\r\n          \"countryCode\": \"US\"\r\n        }\r\n      }\r\n    ],\r\n    \"shipDatestamp\": \"2020-12-30\",\r\n    \"serviceType\": \"STANDARD_OVERNIGHT\",\r\n    \"packagingType\": \"FEDEX_SMALL_BOX\",\r\n    \"pickupType\": \"USE_SCHEDULED_PICKUP\",\r\n    \"blockInsightVisibility\": false,\r\n    \"shippingChargesPayment\": {\r\n      \"paymentType\": \"SENDER\"\r\n    },\r\n    \"shipmentSpecialServices\": {\r\n      \"specialServiceTypes\": [\r\n        \"FEDEX_ONE_RATE\"\r\n      ]\r\n    },\r\n    \"labelSpecification\": {\r\n      \"imageType\": \"PDF\",\r\n      \"labelStockType\": \"PAPER_85X11_TOP_HALF_LABEL\"\r\n    },\r\n    \"requestedPackageLineItems\": [\r\n      {}\r\n    ]\r\n  },\r\n  \"accountNumber\": {\r\n    \"value\": \"740561073\"\r\n  }\r\n}", null, "application/json");
+                request.Content = content;
+                var response = await client.SendAsync(request);
+
+
+                if (response.IsSuccessStatusCode)
+                {
+                    try
+                    {
+                        var myJsonResponse = await response.Content.ReadAsStringAsync();
+                        Shipment_response = JsonConvert.DeserializeObject<Root_fedex>(myJsonResponse);
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine(await response.Content.ReadAsStringAsync());
+                    }
+
+                }
+            }
+            catch(Exception ex)
+            { 
+            
+            }
+
+            label.label_id = Shipment_response.transactionId;
+            label.tracking_number = Shipment_response.output.transactionShipments.FirstOrDefault().masterTrackingNumber;
+            label.shipment_cost = new ShipmentCost1();
+            label.shipment_cost.currency = "usd"; //using static type later we will change
+            label.shipment_cost.total_amount = Shipment_response.output.transactionShipments.FirstOrDefault().pieceResponses.FirstOrDefault().baseRateAmount;;
+            return label;
+        }
+        public async Task<Root1> Create_Shipment_with_UPS(string AccessToken, string PostalcodeShiper, string Reciptcodeshiper)
+        {
+            Root_ups shipment_Response = new Root_ups();
+            Root1 label = new Root1();
+            try
+            {
+                var client = new HttpClient();
+                var request = new HttpRequestMessage(HttpMethod.Post, "https://wwwcie.ups.com/api/shipments/v1/ship?additionaladdressvalidation=string");
+                request.Headers.Add("Authorization", "Bearer " + AccessToken);
+                request.Headers.Add("transId", "string");
+                request.Headers.Add("transactionSrc", "testing");
+                var content = new StringContent("{\n    \"ShipmentRequest\": {\n        \"Request\": {\n            \"SubVersion\": \"1801\",\n            \"RequestOption\": \"nonvalidate\",\n            \"TransactionReference\": {\n                \"CustomerContext\": \"\"\n            }\n        },\n        \"Shipment\": {\n            \"Description\": \"Ship WS test\",\n            \"Shipper\": {\n                \"Name\": \"ShipperName\",\n                \"AttentionName\": \"ShipperZs Attn Name\",\n                \"TaxIdentificationNumber\": \"123456\",\n                \"Phone\": {\n                    \"Number\": \"1115554758\",\n                    \"Extension\": \" \"\n                },\n                \"ShipperNumber\": \"C5J577\",\n                \"FaxNumber\": \"8002222222\",\n                \"Address\": {\n                    \"AddressLine\": [\n                        \"2311 York Rd\"\n                    ],\n                    \"City\": \"Timonium\",\n                    \"StateProvinceCode\": \"MD\",\n                    \"PostalCode\": \"21093\",\n                    \"CountryCode\": \"US\"\n                }\n            },\n            \"ShipTo\": {\n                \"Name\": \"Happy Dog Pet Supply\",\n                \"AttentionName\": \"1160b_74\",\n                \"Phone\": {\n                    \"Number\": \"9225377171\"\n                },\n                \"Address\": {\n                    \"AddressLine\": [\n                        \"123 Main St\"\n                    ],\n                    \"City\": \"timonium\",\n                    \"StateProvinceCode\": \"MD\",\n                    \"PostalCode\": \"21030\",\n                    \"CountryCode\": \"US\"\n                },\n                \"Residential\": \" \"\n            },\n            \"ShipFrom\": {\n                \"Name\": \"T and T Designs\",\n                \"AttentionName\": \"1160b_74\",\n                \"Phone\": {\n                    \"Number\": \"1234567890\"\n                },\n                \"FaxNumber\": \"1234567890\",\n                \"Address\": {\n                    \"AddressLine\": [\n                        \"2311 York Rd\"\n                    ],\n                    \"City\": \"Alpharetta\",\n                    \"StateProvinceCode\": \"GA\",\n                    \"PostalCode\": \"30005\",\n                    \"CountryCode\": \"US\"\n                }\n            },\n            \"PaymentInformation\": {\n                \"ShipmentCharge\": {\n                    \"Type\": \"01\",\n                    \"BillShipper\": {\n                        \"AccountNumber\": \"C5J577\"\n                    }\n                }\n            },\n            \"Service\": {\n                \"Code\": \"03\",\n                \"Description\": \"Express\"\n            },\n            \"Package\": {\n                \"Description\": \" \",\n                \"Packaging\": {\n                    \"Code\": \"02\",\n                    \"Description\": \"Nails\"\n                },\n                \"Dimensions\": {\n                    \"UnitOfMeasurement\": {\n                        \"Code\": \"IN\",\n                        \"Description\": \"Inches\"\n                    },\n                    \"Length\": \"10\",\n                    \"Width\": \"30\",\n                    \"Height\": \"45\"\n                },\n                \"PackageWeight\": {\n                    \"UnitOfMeasurement\": {\n                        \"Code\": \"LBS\",\n                        \"Description\": \"Pounds\"\n                    },\n                    \"Weight\": \"5\"\n                }\n            }\n        },\n        \"LabelSpecification\": {\n            \"LabelImageFormat\": {\n                \"Code\": \"GIF\",\n                \"Description\": \"GIF\"\n            },\n            \"HTTPUserAgent\": \"Mozilla/4.5\"\n        }\n    }\n}", null, "application/json");
+                request.Content = content;
+                var response = await client.SendAsync(request);
+                if (response.IsSuccessStatusCode)
+                {
+                    try
+                    {
+                        var json_response = await response.Content.ReadAsStringAsync();
+                        shipment_Response = JsonConvert.DeserializeObject<Root_ups>(json_response);
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine(await response.Content.ReadAsStringAsync());
+                    }
+
+                }
+            }
+            catch(Exception EX)
+            {
+            
+            }
+
+            label.label_id = shipment_Response.ShipmentResponse.ShipmentResults.ShipmentIdentificationNumber;
+            label.tracking_number = shipment_Response.ShipmentResponse.ShipmentResults.PackageResults.TrackingNumber;
+            label.shipment_cost = new ShipmentCost1();
+            label.shipment_cost.currency = shipment_Response.ShipmentResponse.ShipmentResults.ShipmentCharges.TotalCharges.CurrencyCode;
+            label.shipment_cost.total_amount = Convert.ToDouble(shipment_Response.ShipmentResponse.ShipmentResults.ShipmentCharges.TotalCharges.MonetaryValue);
+            return label;
         }
         public void mytest()
         {
@@ -298,7 +449,6 @@ namespace CourierRates.Controllers
         }";
             return jsonData;
         }
-
         // Api to generate token to access other apis
         public string GetToken()
         {
@@ -358,7 +508,6 @@ namespace CourierRates.Controllers
             Console.WriteLine(await response.Content.ReadAsStringAsync());
 
         }
-
         // Api method to get rate quotes on the basis of recipient postal code
         public async Task<Application> GetrateResponseAsync(string Token, String accountnumber, string _shipperPostalCode, string _recipientPostalCode)
         {
@@ -394,142 +543,6 @@ namespace CourierRates.Controllers
             // Console.WriteLine(await response.Content.ReadAsStringAsync());
             // return response;
 
-        }
-
-        public class SurCharges
-        {
-            public string type { get; set; }
-            public string description { get; set; }
-            public string amount { get; set; }
-
-        }
-        public class TotalBillingWeight
-        {
-            public string units { get; set; }
-            public string value { get; set; }
-
-        }
-        public class ShipmentRateDetail
-        {
-            public string rateZone { get; set; }
-            public string dimDivisor { get; set; }
-            public string fuelSurchargePercent { get; set; }
-            public string totalSurcharges { get; set; }
-            public string totalFreightDiscount { get; set; }
-            public IList<SurCharges> surCharges { get; set; }
-            public string pricingCode { get; set; }
-            public TotalBillingWeight totalBillingWeight { get; set; }
-            public string currency { get; set; }
-            public string rateScale { get; set; }
-
-        }
-        public class BillingWeight
-        {
-            public string units { get; set; }
-            public string value { get; set; }
-            // public UnitOfMeasurement UnitOfMeasurement { get; set; }
-            public string Weight { get; set; }
-
-        }
-        public class Surcharges
-        {
-            public string type { get; set; }
-            public string description { get; set; }
-            public string amount { get; set; }
-
-        }
-        public class PackageRateDetail
-        {
-            public string rateType { get; set; }
-            public string ratedWeightMethod { get; set; }
-            public string baseCharge { get; set; }
-            public string netFreight { get; set; }
-            public string totalSurcharges { get; set; }
-            public string netFedExCharge { get; set; }
-            public string totalTaxes { get; set; }
-            public string netCharge { get; set; }
-            public string totalRebates { get; set; }
-            public BillingWeight billingWeight { get; set; }
-            public string totalFreightDiscounts { get; set; }
-            public IList<Surcharges> surcharges { get; set; }
-            public string currency { get; set; }
-
-        }
-        public class RatedPackages
-        {
-            public string groupNumber { get; set; }
-            public string effectiveNetDiscount { get; set; }
-            public PackageRateDetail packageRateDetail { get; set; }
-
-        }
-        public class RatedShipmentDetails
-        {
-            public string rateType { get; set; }
-            public string ratedWeightMethod { get; set; }
-            public string totalDiscounts { get; set; }
-            public string totalBaseCharge { get; set; }
-            public string totalNetCharge { get; set; }
-            public string totalNetFedExCharge { get; set; }
-            public ShipmentRateDetail shipmentRateDetail { get; set; }
-            public IList<RatedPackages> ratedPackages { get; set; }
-            public string currency { get; set; }
-
-        }
-        public class OperationalDetail
-        {
-            public string ineligibleForMoneyBackGuarantee { get; set; }
-            public string astraDescription { get; set; }
-            public string airportId { get; set; }
-            public string serviceCode { get; set; }
-
-        }
-        public class Names
-        {
-            public string type { get; set; }
-            public string encoding { get; set; }
-            public string value { get; set; }
-
-        }
-        public class ServiceDescription
-        {
-            public string serviceId { get; set; }
-            public string serviceType { get; set; }
-            public string code { get; set; }
-            public IList<Names> names { get; set; }
-            public string serviceCategory { get; set; }
-            public string description { get; set; }
-            public string astraDescription { get; set; }
-
-        }
-        public class RateReplyDetails
-        {
-            public string serviceType { get; set; }
-            public string serviceName { get; set; }
-            public string packagingType { get; set; }
-            public IList<RatedShipmentDetails> ratedShipmentDetails { get; set; }
-            public OperationalDetail operationalDetail { get; set; }
-            public string signatureOptionType { get; set; }
-            public ServiceDescription serviceDescription { get; set; }
-
-        }
-        public class Output
-        {
-            public IList<RateReplyDetails> rateReplyDetails { get; set; }
-            public string quoteDate { get; set; }
-            public string encoded { get; set; }
-
-        }
-        public class Application
-        {
-            public string transactionId { get; set; }
-            public Output output { get; set; }
-
-        }
-        public class ups_auth_response
-        {
-            public string result { get; set; }
-            public string type { get; set; }
-            public string LassoRedirectURL { get; set; }
         }
         //final 20230608
 
@@ -685,6 +698,38 @@ namespace CourierRates.Controllers
                 return await UPS_Rating_v2(access_token);
             }
         }
+        public async Task<string> GetToken_UPS()
+        {
+            var baseAddress = "https://wwwcie.ups.com";         // testing
+            string client_id = "AhgxQ1FBEOCNloVM81cuxmoOfdtvYca8oQ03JC4ok743DIvd";
+            string Secret_Key = "fwQPweeipmcZ3zGshWb4IXzFQBoVi7cTwmp4iO93JXsPJ4UOt4rATMGgaGhgmTO5";
+
+            var accessID = $"{"" + client_id + ""}:{"" + Secret_Key + ""}";
+            var base64AccessID = Convert.ToBase64String(Encoding.ASCII.GetBytes(accessID));
+
+            using (var client = new HttpClient())
+            {
+                // Get Access Token
+                var request = new HttpRequestMessage()
+                {
+                    Method = HttpMethod.Post,
+                    RequestUri = new Uri($"{baseAddress}/security/v1/oauth/token"),
+                    Content = new FormUrlEncodedContent(new[]
+                    {
+            new KeyValuePair<string, string>("grant_type", "client_credentials")
+        })
+                };
+                request.Headers.Add("Authorization", $"Basic {base64AccessID}");
+
+                var response = await client.SendAsync(request);
+
+                var jsonResult = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<dynamic>(jsonResult);
+
+                var access_token = result?["access_token"]?.ToString();
+                return access_token;
+            }
+        }
         public async Task<ActionResult> UPSIndex(string code)
         {
             var UPS_RateResponse = await UPS_GenerateToken();
@@ -693,7 +738,6 @@ namespace CourierRates.Controllers
             return View("UPS_Rating", UPS_RateResponse);
 
         }
-
         public async Task<ActionResult> GeTAllRateList(string code, string _shipperPostalCode, string _recipientPostalCode)
         {
             var fed_ex_acc_No= "740561073";
@@ -757,7 +801,6 @@ namespace CourierRates.Controllers
             }
             return UPs_response;
         }
-
         //
         /// <summary>
         /// THIS FUNCTION GETS authorize api  response of https://signin.testing.stampsendicia.com . We are sending three parameters to this get api.
@@ -778,6 +821,25 @@ namespace CourierRates.Controllers
                 var Sender_postal_code = HttpContext.Session.GetString("Shipper_Postal_Code");
                 var Receipient_postal_code = HttpContext.Session.GetString("Recipient_Postal_Code");
                 return await Get_All_RateList(code, Sender_postal_code, Receipient_postal_code, false);
+            }
+            return Redirect(stamps_login_URL);
+        }
+        public async Task<ActionResult> Stamps_Login_RedirectLabel(string? code)
+        {
+            HttpContext.Session.SetString("IsForlabel", "1");
+            string stamps_login_URL = String.Empty;
+            // In this function we need set code setting so that it will run in first click. Righ now the thing is happening that first time it hit the
+            // the api and get code. In second attempt it hit rate list api when it has the code. So we need to get and save the code before hitting this api-
+            if (code == null || code == "undefined")
+            {
+                stamps_login_URL = "https://signin.testing.stampsendicia.com/authorize?client_id=5rcNPLgvzkqSYFJYeSTMr029O6fPfZFe&response_type=code&redirect_uri=https://localhost:7210/";
+            }
+            else
+            {
+                var Sender_postal_code = HttpContext.Session.GetString("Shipper_Postal_Code");
+                var Receipient_postal_code = HttpContext.Session.GetString("Recipient_Postal_Code");
+                var Service = HttpContext.Session.GetString("ServiceType");
+                return await Get_STMPS_Label(code, Sender_postal_code, Receipient_postal_code, Service);
             }
             return Redirect(stamps_login_URL);
         }
@@ -843,7 +905,6 @@ namespace CourierRates.Controllers
             }
             return myDeserializedClass;
         }
-
         public async Task<List<Root>> Get_Stamps_RateList(string Access_token)
         {
 
@@ -863,12 +924,149 @@ namespace CourierRates.Controllers
             return myDeserializedClass;
         }
 
+
+        #region Model Classes
+
+        public class SurCharges
+        {
+            public string type { get; set; }
+            public string description { get; set; }
+            public string amount { get; set; }
+
+        }
+        public class TotalBillingWeight
+        {
+            public string units { get; set; }
+            public string value { get; set; }
+
+        }
+        public class ShipmentRateDetail
+        {
+            public string rateZone { get; set; }
+            public string dimDivisor { get; set; }
+            public string fuelSurchargePercent { get; set; }
+            public string totalSurcharges { get; set; }
+            public string totalFreightDiscount { get; set; }
+            public IList<SurCharges> surCharges { get; set; }
+            public string pricingCode { get; set; }
+            public TotalBillingWeight totalBillingWeight { get; set; }
+            public string currency { get; set; }
+            public string rateScale { get; set; }
+
+        }
+        public class BillingWeight
+        {
+            public string units { get; set; }
+            public string value { get; set; }
+            // public UnitOfMeasurement UnitOfMeasurement { get; set; }
+            public string Weight { get; set; }
+
+        }
+        public class Surcharges
+        {
+            public string type { get; set; }
+            public string description { get; set; }
+            public string amount { get; set; }
+
+        }
+        public class PackageRateDetail
+        {
+            public string rateType { get; set; }
+            public string ratedWeightMethod { get; set; }
+            public string baseCharge { get; set; }
+            public string netFreight { get; set; }
+            public string totalSurcharges { get; set; }
+            public string netFedExCharge { get; set; }
+            public string totalTaxes { get; set; }
+            public string netCharge { get; set; }
+            public string totalRebates { get; set; }
+            public BillingWeight billingWeight { get; set; }
+            public string totalFreightDiscounts { get; set; }
+            public IList<Surcharges> surcharges { get; set; }
+            public string currency { get; set; }
+
+        }
+        public class RatedPackages
+        {
+            public string groupNumber { get; set; }
+            public string effectiveNetDiscount { get; set; }
+            public PackageRateDetail packageRateDetail { get; set; }
+
+        }
+        public class RatedShipmentDetails
+        {
+            public string rateType { get; set; }
+            public string ratedWeightMethod { get; set; }
+            public string totalDiscounts { get; set; }
+            public string totalBaseCharge { get; set; }
+            public string totalNetCharge { get; set; }
+            public string totalNetFedExCharge { get; set; }
+            public ShipmentRateDetail shipmentRateDetail { get; set; }
+            public IList<RatedPackages> ratedPackages { get; set; }
+            public string currency { get; set; }
+
+        }
+        public class OperationalDetail
+        {
+            public string ineligibleForMoneyBackGuarantee { get; set; }
+            public string astraDescription { get; set; }
+            public string airportId { get; set; }
+            public string serviceCode { get; set; }
+
+        }
+        public class Names
+        {
+            public string type { get; set; }
+            public string encoding { get; set; }
+            public string value { get; set; }
+
+        }
+        public class ServiceDescription
+        {
+            public string serviceId { get; set; }
+            public string serviceType { get; set; }
+            public string code { get; set; }
+            public IList<Names> names { get; set; }
+            public string serviceCategory { get; set; }
+            public string description { get; set; }
+            public string astraDescription { get; set; }
+
+        }
+        public class RateReplyDetails
+        {
+            public string serviceType { get; set; }
+            public string serviceName { get; set; }
+            public string packagingType { get; set; }
+            public IList<RatedShipmentDetails> ratedShipmentDetails { get; set; }
+            public OperationalDetail operationalDetail { get; set; }
+            public string signatureOptionType { get; set; }
+            public ServiceDescription serviceDescription { get; set; }
+
+        }
+        public class Output
+        {
+            public IList<RateReplyDetails> rateReplyDetails { get; set; }
+            public string quoteDate { get; set; }
+            public string encoded { get; set; }
+
+        }
+        public class Application
+        {
+            public string transactionId { get; set; }
+            public Output output { get; set; }
+
+        }
+        public class ups_auth_response
+        {
+            public string result { get; set; }
+            public string type { get; set; }
+            public string LassoRedirectURL { get; set; }
+        }
         public class Alert
         {
             public string Code { get; set; }
             public string Description { get; set; }
         }
-
         public class BaseServiceCharge
         {
             public string CurrencyCode { get; set; }
@@ -880,7 +1078,6 @@ namespace CourierRates.Controllers
             public string CurrencyCode { get; set; }
             public string MonetaryValue { get; set; }
         }
-
         public class RatedPackage
         {
             //public TransportationCharges TransportationCharges { get; set; }
@@ -892,7 +1089,6 @@ namespace CourierRates.Controllers
             public BillingWeight BillingWeight { get; set; }
             // public SimpleRate SimpleRate { get; set; }
         }
-
         public class RatedShipment
         {
             // public Service Service { get; set; }
@@ -904,7 +1100,6 @@ namespace CourierRates.Controllers
             // public TotalCharges TotalCharges { get; set; }
             public RatedPackage RatedPackage { get; set; }
         }
-
         public class RatedShipmentAlert
         {
             public string Code { get; set; }
@@ -916,38 +1111,32 @@ namespace CourierRates.Controllers
         {
             public Rateresponse RateResponse { get; set; }
         }
-
         public class Rateresponse
         {
             public Response Response { get; set; }
             public Ratedshipment RatedShipment { get; set; }
         }
-
         public class Response
         {
             public Responsestatus ResponseStatus { get; set; }
             public Alert[] Alert { get; set; }
             public Transactionreference TransactionReference { get; set; }
         }
-
         public class Responsestatus
         {
             public string Code { get; set; }
             public string Description { get; set; }
         }
-
         public class Transactionreference
         {
             public string CustomerContext { get; set; }
             public string TransactionIdentifier { get; set; }
         }
-
         public class Alert1
         {
             public string Code { get; set; }
             public string Description { get; set; }
         }
-
         public class Ratedshipment
         {
             public Service Service { get; set; }
@@ -959,55 +1148,46 @@ namespace CourierRates.Controllers
             public Totalcharges TotalCharges { get; set; }
             public Ratedpackage RatedPackage { get; set; }
         }
-
         public class Service
         {
             public string Code { get; set; }
             public string Description { get; set; }
         }
-
         public class Ratedshipmentalert
         {
             public string Code { get; set; }
             public string Description { get; set; }
         }
-
         public class Billingweight
         {
             public Unitofmeasurement UnitOfMeasurement { get; set; }
             public string Weight { get; set; }
         }
-
         public class Unitofmeasurement
         {
             public string Code { get; set; }
             public string Description { get; set; }
         }
-
         public class Transportationcharges
         {
             public string CurrencyCode { get; set; }
             public string MonetaryValue { get; set; }
         }
-
         public class Baseservicecharge
         {
             public string CurrencyCode { get; set; }
             public string MonetaryValue { get; set; }
         }
-
         public class Serviceoptionscharges
         {
             public string CurrencyCode { get; set; }
             public string MonetaryValue { get; set; }
         }
-
         public class Totalcharges
         {
             public string CurrencyCode { get; set; }
             public string MonetaryValue { get; set; }
         }
-
         public class Ratedpackage
         {
             public Transportationcharges1 TransportationCharges { get; set; }
@@ -1019,50 +1199,42 @@ namespace CourierRates.Controllers
             public Billingweight1 BillingWeight { get; set; }
             public Simplerate SimpleRate { get; set; }
         }
-
         public class Transportationcharges1
         {
             public string CurrencyCode { get; set; }
             public string MonetaryValue { get; set; }
         }
-
         public class Baseservicecharge1
         {
             public string CurrencyCode { get; set; }
             public string MonetaryValue { get; set; }
         }
-
         public class Serviceoptionscharges1
         {
             public string CurrencyCode { get; set; }
             public string MonetaryValue { get; set; }
         }
-
         public class Itemizedcharges
         {
             public string Code { get; set; }
             public string CurrencyCode { get; set; }
             public string MonetaryValue { get; set; }
         }
-
         public class Totalcharges1
         {
             public string CurrencyCode { get; set; }
             public string MonetaryValue { get; set; }
         }
-
         public class Billingweight1
         {
             public Unitofmeasurement1 UnitOfMeasurement { get; set; }
             public string Weight { get; set; }
         }
-
         public class Unitofmeasurement1
         {
             public string Code { get; set; }
             public string Description { get; set; }
         }
-
         public class Simplerate
         {
             public string Code { get; set; }
@@ -1085,7 +1257,6 @@ namespace CourierRates.Controllers
             public string fee_type { get; set; }
             public double amount { get; set; }
         }
-
         public class StampsRateResponse
         {
             public Root Root { get; set; }
@@ -1103,7 +1274,6 @@ namespace CourierRates.Controllers
             public bool is_customs_required { get; set; }
             public ShipmentCost shipment_cost { get; set; }
         }
-
         public class ShipmentCost
         {
             public double total_amount { get; set; }
@@ -1111,6 +1281,7 @@ namespace CourierRates.Controllers
             public List<CostDetail> cost_details { get; set; }
         }
 
+        #endregion
 
         // STAMPS RATING RESPONSE CLASSES: END
         //Stamps Rate Response- start
@@ -1143,7 +1314,56 @@ namespace CourierRates.Controllers
         //    public List<CostDetail_v2> CostDetail_v2 { get; set; }
         //}
 
+        #region STMPS DTO MODELS
+        public class AccountBalance
+        {
+            public double amount_available { get; set; }
+            public double max_balance_amount_allowed { get; set; }
+            public string currency { get; set; }
+        }
 
+        public class CostDetail1
+        {
+            public string fee_code { get; set; }
+            public string fee_type { get; set; }
+            public double amount { get; set; }
+        }
+
+        public class Label
+        {
+            public string href { get; set; }
+        }
+
+        public class Root1
+        {
+            public string label_id { get; set; }
+            public string tracking_number { get; set; }
+            public string carrier { get; set; }
+            public string service_type { get; set; }
+            public string packaging_type { get; set; }
+            public string estimated_delivery_days { get; set; }
+            public DateTime estimated_delivery_date { get; set; }
+            public bool is_guaranteed_service { get; set; }
+            public string trackable { get; set; }
+            public bool is_return_label { get; set; }
+            public bool is_gap { get; set; }
+            public bool is_smartsaver { get; set; }
+            public bool is_etoe { get; set; }
+            public ShipmentCost1 shipment_cost { get; set; }
+            public AccountBalance account_balance { get; set; }
+            public List<Label> labels { get; set; }
+            public object forms { get; set; }
+            public object branding_id { get; set; }
+            public object notification_setting_id { get; set; }
+        }
+
+        public class ShipmentCost1
+        {
+            public double total_amount { get; set; }
+            public string currency { get; set; }
+            public List<CostDetail1> cost_details { get; set; }
+        }
+        #endregion
 
     }
 }

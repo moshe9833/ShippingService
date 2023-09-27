@@ -9672,11 +9672,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\APICall_NewProject03_June_2023\\CourierRates_UpdatedOn_08202023\\CourierRates\\CourierRates.csproj",
+      "projectUniqueName": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\CourierRates.csproj",
       "projectName": "CourierRates",
-      "projectPath": "D:\\APICall_NewProject03_June_2023\\CourierRates_UpdatedOn_08202023\\CourierRates\\CourierRates.csproj",
+      "projectPath": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\CourierRates.csproj",
       "packagesPath": "C:\\Users\\Spadez\\.nuget\\packages\\",
-      "outputPath": "D:\\APICall_NewProject03_June_2023\\CourierRates_UpdatedOn_08202023\\CourierRates\\obj\\",
+      "outputPath": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -26,7 +26,11 @@
           rel="stylesheet">
 </head>
 <body>
-
+    <div>
+        <input type="button"
+               value="Go Somewhere Else"
+               onclick="location.href='<%: Url.Action("Action", "Controller" ) %>'" />
+    </div>
     <div id="maindiv" >
         <table class="table table-striped sampleTable" id="table_id">
             <thead>
