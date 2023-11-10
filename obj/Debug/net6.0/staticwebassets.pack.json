@@ -1,275 +1,271 @@
 {
   "Files": [
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\CourierRates.bundle.scp.css",
-      "PackagePath": "staticwebassets\\CourierRates.bundle.scp.css"
-    },
-    {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\css\\site.css",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\favicon.ico",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\images\\DHL.png",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\images\\DHL.png",
       "PackagePath": "staticwebassets\\images\\DHL.png"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\images\\apiCall.gif",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\images\\apiCall.gif",
       "PackagePath": "staticwebassets\\images\\apiCall.gif"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\images\\dhl-logo.png",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\images\\dhl-logo.png",
       "PackagePath": "staticwebassets\\images\\dhl-logo.png"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\images\\fedex-logo.png",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\images\\fedex-logo.png",
       "PackagePath": "staticwebassets\\images\\fedex-logo.png"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\images\\fedexImage.jpg",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\images\\fedexImage.jpg",
       "PackagePath": "staticwebassets\\images\\fedexImage.jpg"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\images\\ups-logo.png",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\images\\ups-logo.png",
       "PackagePath": "staticwebassets\\images\\ups-logo.png"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\images\\upsImage.jpg",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\images\\upsImage.jpg",
       "PackagePath": "staticwebassets\\images\\upsImage.jpg"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\js\\site.js",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Id": "D:\\Courrier\\MOSHE-GIT\\ShippingService\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Id": "D:\\pooja\\CLIENT-PROJECT\\Moshe Neuman-Shiping Service\\ShippingService\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {

@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Text;
-using static CourierRates.Controllers.APICallController;
+using static CourierRates.Models.GetShip;
 
 namespace CourierRates.Controllers
 {

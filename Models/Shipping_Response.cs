@@ -3,7 +3,7 @@
     public class Shipping_Response
     {
 
-        // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
+ 
         public class Alert
         {
             public string code { get; set; }
@@ -349,6 +349,13 @@
             {
                 public string Code { get; set; }
                 public string Description { get; set; }
+            }
+            public class AccessTokenResponse
+            {
+                public string access_token { get; set; }
+                public string token_type { get; set; }
+                public int expires_in { get; set; }
+                public string scope { get; set; }
             }
 
         }

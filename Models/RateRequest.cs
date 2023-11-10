@@ -159,10 +159,7 @@ namespace CourierRates.Models
         public string outbound_label_id { get; set; }
     }
 
-    public class Root
-    {
-        
-    }
+  
 
     public class SenderInfo
     {
