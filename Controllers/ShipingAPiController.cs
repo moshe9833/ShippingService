@@ -171,7 +171,7 @@ namespace CourierRates.Controllers
             {
                 return BadRequest("Invalid input"); 
             }
-        }
+        }  
 
         [Route("GetShipping")]
         [HttpGet]
@@ -183,20 +183,24 @@ namespace CourierRates.Controllers
             return result;
             
         }
-        //[Route("VoidShipping")]
-        //[HttpGet]
-        //public IActionResult VoidShipping()
-        //{
-        //    return Ok();
-        //}
+       
         [Route("TrackShipping")]
         [HttpGet]
         public async Task<IActionResult> TrackShipping()
         {
            var result = await _shippingService.GetUPSStatus();
             //var result = await _aPICallController.GetFEdEXStatus();
-
+           
             return Ok(result);
+        }
+
+        [Route("GetLabel")]
+        [HttpGet]
+        public async Task<List<Root1>> GetLabel(string? code, string shipperPostalCode, string recipientPostalCode)
+        {
+            var result = await _shippingService.Get_STMPS_Label(code, shipperPostalCode, recipientPostalCode);
+            return result;
         }
     }
 }
+    

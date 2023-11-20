@@ -12,6 +12,8 @@ using static CourierRates.Models.Shipping_Response.UPS_Response;
 using static CourierRates.Models.Shipping_Response;
 using System.Net.Http.Headers;
 using System.Net;
+using Microsoft.DotNet.MSIdentity.Shared;
+using static CourierRates.Models.GetTrack;
 
 namespace CourierRates.Services
 {
@@ -103,16 +105,6 @@ namespace CourierRates.Services
             public async Task<List<Root1>> Get_STMPS_Label(string code, string shipperPostalCode, string recipientPostalCode)
             {
                 List<Root1> labels = new List<Root1>();
-                //STORE POSTAL CODE INTO SESSION
-                //HttpContext.Session.SetString("Shipper_Postal_Code", shipperPostalCode);
-                //HttpContext.Session.SetString("Recipient_Postal_Code", recipientPostalCode);
-                //HttpContext.Session.SetString("ServiceType", ServiceType);
-
-                //if (code == null)
-                // {
-                //     return this.Redirect(Request.Scheme + "://" + Request.Host.Value + "/APICall/Stamps_Login_RedirectLabel?code=" + code);
-                // }
-
                 string acess_tokenFedex = GetToken();
                 Root1 label3 = await Create_Shipment_with_FedEx(acess_tokenFedex, shipperPostalCode, recipientPostalCode);
                 labels.Add(label3);
@@ -125,7 +117,6 @@ namespace CourierRates.Services
                 string access_token = await GetToken_UPS();
                 Root1 label2 = await Create_Shipment_with_UPS(access_token, shipperPostalCode, recipientPostalCode);
                 labels.Add(label2);
-
 
 
                 return labels;
@@ -213,7 +204,7 @@ namespace CourierRates.Services
                 label.shipment_cost.total_amount = Shipment_response.output.transactionShipments.FirstOrDefault().pieceResponses.FirstOrDefault().baseRateAmount; ;
                 return label;
             }
-            public async Task<string> GetUPSStatus()
+            public async Task<GetTrack.RootObject> GetUPSStatus()
             {
                 // Construct the API URL
                 string apiUrl = "https://wwwcie.ups.com/api/track/v1/details/1Z12345E8791315509?locale=en_US&returnSignature=false&inquiryNumber=1Z12345E8791315509";
@@ -230,9 +221,12 @@ namespace CourierRates.Services
                     // Check if the request was successful (status code 200)
                     if (response.IsSuccessStatusCode)
                     {
-                        // Read and return the response content
+                    // Read and return the response content
                         var result = response.Content.ReadAsStringAsync().Result;
-                        return result;
+                    GetTrack.RootObject responseObject = JsonConvert.DeserializeObject<GetTrack.RootObject>(result);
+
+
+                    return responseObject;
                     }
                     else
                     {
