@@ -17,6 +17,8 @@ using System.Diagnostics.Metrics;
 using static CourierRates.Models.UPS_RateResponse;
 using static CourierRates.Models.GetShip;
 using static CourierRates.Models.GetStamp;
+using static CourierRates.Models.Shippment;
+using System.Reflection.Emit;
 
 namespace CourierRates.Controllers
 {
@@ -28,19 +30,19 @@ namespace CourierRates.Controllers
 
         private readonly ShippingService _shippingService;
         private readonly IHttpClientFactory _httpClientFactory;
-      
-      
+
+
 
         public ShipingAPiController(ILogger<HomeController> logger, IHttpClientFactory httpClientFactory, ShippingService shippingService)
         {
             _logger = logger;
             _httpClientFactory = httpClientFactory;
             _shippingService = shippingService;
-          
-        
+
+
         }
 
-      
+
         [Route("GetUPSRate")]
         [HttpGet]
         public async Task<Rootobject> GetUPSRate()
@@ -165,42 +167,72 @@ namespace CourierRates.Controllers
 
             if (result != null)
             {
-                return Ok(result); 
+                return Ok(result);
             }
             else
             {
-                return BadRequest("Invalid input"); 
+                return BadRequest("Invalid input");
             }
-        }  
+        }
 
         [Route("GetShipping")]
-        [HttpGet]
-        public async Task<List<Root1>> GetShipping(string? code, string shipperPostalCode, string recipientPostalCode)
+        [HttpPost]
+        public async Task<List<Root1>> GetShipping(string? code, [FromBody] ShippingRequest shippingRequest)
         {
-            var result = await _shippingService.Get_STMPS_Label(code, shipperPostalCode , recipientPostalCode );
+            var result = await _shippingService.Get_STMPS_Label(code ,shippingRequest );
 
 
             return result;
-            
+
         }
-       
+
         [Route("TrackShipping")]
         [HttpGet]
-        public async Task<IActionResult> TrackShipping()
+        public async Task<IActionResult> TrackShipping([FromBody] TrackingRequest trackingRequest)
         {
-           var result = await _shippingService.GetUPSStatus();
+            var result = await _shippingService.GetUPSStatus(trackingRequest);
             //var result = await _aPICallController.GetFEdEXStatus();
-           
+
             return Ok(result);
         }
+        [Route("Void")]
+        [HttpDelete]
+        public async Task<IActionResult> VoidLabel(string labelId)
+        {
+            try
+            {
+                string accessToken = await _shippingService.GetToken_UPS();
+                var apiUrl = $"https://api.testing.stampsendicia.com/sera/v1/labels/{labelId}/void";
+
+                using (var httpClient = new HttpClient())
+                {
+                    httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {accessToken}");
+
+                    var response = await httpClient.DeleteAsync(apiUrl);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return Ok();
+                    }
+
+                    Console.WriteLine($"Stamps.com Void API failed. Status code: {response.StatusCode}");
+                    return StatusCode((int)response.StatusCode);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                return StatusCode(500); 
+            }
+        }
+
 
         [Route("GetLabel")]
         [HttpGet]
-        public async Task<List<Root1>> GetLabel(string? code, string shipperPostalCode, string recipientPostalCode)
+        public async Task<List<Root1>> GetLabel(string? code, ShippingRequest shippingRequest)
         {
-            var result = await _shippingService.Get_STMPS_Label(code, shipperPostalCode, recipientPostalCode);
+            var result = await _shippingService.Get_STMPS_Label(code, shippingRequest);
             return result;
         }
     }
 }
-    
